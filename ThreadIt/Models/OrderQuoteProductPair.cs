@@ -15,5 +15,5 @@ namespace ThreadIt.Models
         public double cost_per_item { get; set; }
         public double price_per_item { get; set; }
         public bool is_order { get; set; }
-}
+    }
 }
