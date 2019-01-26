@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace ThreadIt.Models
 {
-    public class FreightCarrier
+    public class JobTitle
     {
         public int id { get; set; }
-        public string name { get; set; }
-        public string telephone_number { get; set; }
+        public string job_title_type { get; set; }
     }
 }
