@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ThreadIt.DataAccess;
+using ThreadIt.Models;
 using Microsoft.Extensions.Configuration;
 
 namespace ThreadIt.Controllers
@@ -30,6 +31,18 @@ namespace ThreadIt.Controllers
         public IActionResult GetOrderById(int id)
         {
             return Ok(_storage.GetSingleOrder(id));
+        }
+
+        [HttpPost]
+        public IActionResult AddNewOrder(Order order)
+        {
+            return Ok(_storage.AddOrder(order));
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateAnOrder(int id, Order order)
+        {
+            return Ok(_storage.UpdateOrder(id, order));
         }
     }
 }
