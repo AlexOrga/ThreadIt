@@ -38,5 +38,11 @@ namespace ThreadIt.Controllers
         {
             return Ok(_storage.AddOrder(order));
         }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateAnOrder(int id, Order order)
+        {
+            return Ok(_storage.UpdateOrder(id, order));
+        }
     }
 }
