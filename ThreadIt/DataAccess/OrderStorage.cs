@@ -24,7 +24,7 @@ namespace ThreadIt.DataAccess
             {
                 connection.Open();
 
-                var result = connection.Query<Order>(@"Select * FROM orders");
+                var result = connection.Query<Order>(@"SELECT * FROM orders");
 
                 return result;
             }
@@ -36,9 +36,34 @@ namespace ThreadIt.DataAccess
             {
                 connection.Open();
 
-                var result = connection.Query<Order>(@"Select * From orders Where orders.id = @id", new { id });
+                var result = connection.Query<Order>(@"SELECT * FROM orders WHERE orders.id = @id", new { id });
 
                 return result;
+            }
+        }
+
+        public bool AddOrder(Order order)
+        {
+            using(var connection = new SqlConnection(conString))
+            {
+                connection.Open();
+
+                var result = connection.Execute(@"INSERT INTO orders (
+                                                    [purchase_order], [quote_number], [salesman_id], [client_id], 
+                                                    [client_id_of_purchaser], [billing_address], [shipping_address], 
+                                                    [freight_carrier_id], [fob], [date_created], [date_will_ship], 
+                                                    [date_shipped], [tracking_number], [status_number], [is_paid], 
+                                                    [payment_type], [is_cancelled], [is_on_hold], [comments]
+                                                )
+                                                VALUES (
+                                                    @purchase_order, @quote_number, @salesman_id, @client_id, @client_id_of_purchaser, 
+                                                    @billing_address, @shipping_address, @freight_carrier_id, @fob, 
+                                                    @date_created, @date_will_ship, @date_shipped, @tracking_number, @status_number, 
+                                                    @is_paid, @payment_type, @is_cancelled, @is_on_hold, @comments
+                                                )", order
+                                                );
+
+                return result == 1;
             }
         }
     }

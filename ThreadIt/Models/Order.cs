@@ -9,7 +9,7 @@ namespace ThreadIt.Models
     {
         public int id { get; set; }
         public string purchase_order { get; set; }
-        public int quote_number { get; set; }
+        public int? quote_number { get; set; }
         public int salesman_id { get; set; }
         public int client_id { get; set; }
         public int client_id_of_purchaser { get; set; }
@@ -22,8 +22,6 @@ namespace ThreadIt.Models
         public DateTime? date_shipped { get; set; }
         public string tracking_number { get; set; } //Non-nullable type (if no tracking number then put 'None' or '')
         public int status_number { get; set; }
-        public double total_cost { get; set; }
-        public double total_price { get; set; }
         public bool is_paid { get; set; }
         public string payment_type { get; set; }
         public bool is_cancelled { get; set; }
