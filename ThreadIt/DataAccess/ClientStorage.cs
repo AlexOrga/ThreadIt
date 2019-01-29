@@ -45,5 +45,24 @@ namespace ThreadIt.DataAccess
                 return result;
             }
         }
+
+        public bool AddClient(Client client)
+        {
+            using (var connection = new SqlConnection(conString))
+            {
+                connection.Open();
+
+                var result = connection.Execute(@"INSERT INTO clients (
+                                                    [name], [address], [telephone_number], 
+                                                    [fax_number], [cod], [comments]
+                                                    )
+                                                    VALUES (
+                                                    @name, @address, @telephone_number,
+                                                    @fax_number, @cod, @comments
+                                                    )", client);
+
+                return result == 1;
+            }
+        }
     }
 }

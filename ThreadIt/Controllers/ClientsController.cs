@@ -32,5 +32,11 @@ namespace ThreadIt.Controllers
         {
             return Ok(_storage.GetSingleClient(id));
         }
+
+        [HttpPost]
+        public IActionResult AddClient(Client client)
+        {
+            return Ok(_storage.AddClient(client));
+        }
     }
 }

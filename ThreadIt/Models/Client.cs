@@ -13,6 +13,6 @@ namespace ThreadIt.Models
         public string telephone_number { get; set; }
         public string fax_number { get; set; }
         public bool cod { get; set; }
-        public string commments { get; set; }
+        public string comments { get; set; }
     }
 }
