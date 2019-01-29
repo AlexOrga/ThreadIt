@@ -38,5 +38,11 @@ namespace ThreadIt.Controllers
         {
             return Ok(_storage.AddClient(client));
         }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateClient(int id, Client client)
+        {
+            return Ok(_storage.UpdateClient(id, client));
+        }
     }
 }

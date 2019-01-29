@@ -64,5 +64,35 @@ namespace ThreadIt.DataAccess
                 return result == 1;
             }
         }
+
+        public bool UpdateClient(int id, Client client)
+        {
+            using (var connection = new SqlConnection(conString))
+            {
+                connection.Open();
+
+                var result = connection.Execute(@"UPDATE clients 
+                                                  SET
+                                                  [name] = @name, 
+                                                  [address] = @address, 
+                                                  [telephone_number] = @telephone_number, 
+                                                  [fax_number] = @fax_number, 
+                                                  [cod] = @cod, 
+                                                  [comments] = @comments
+                                                  WHERE clients.id = @id",
+                                                  new
+                                                  {
+                                                      id,
+                                                      name = client.name,
+                                                      address = client.address,
+                                                      telephone_number = client.telephone_number,
+                                                      fax_number = client.fax_number,
+                                                      cod = client.cod,
+                                                      comments = client.comments
+                                                  });
+
+                return result == 1;
+            }
+        }
     }
 }
