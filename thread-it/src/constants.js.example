@@ -1,0 +1,7 @@
+const constants = {
+  config:{
+    databaseURL: ""
+  }
+}
+
+export default constants;
