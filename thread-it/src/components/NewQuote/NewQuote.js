@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import QuoteInfo from '../../apiRequests/quoteInfoRequest';
 
 class NewQuote extends Component{
   state = {
