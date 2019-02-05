@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import QuoteInfo from '../../apiRequests/quoteInfoRequest';
+import FreightRequests from '../../apiRequests/freightCarrierRequests';
+import ClientRequests from '../../apiRequests/clientsRequests';
+import EmployeeRequests from '../../apiRequests/employeesRequests';
 
 class NewQuote extends Component{
   state = {
@@ -21,18 +23,41 @@ class NewQuote extends Component{
     freight_carriers: []
   }
 
-  componentDidMount(){
+  componentDidMount () {
+    FreightRequests.getAllFreightCarriers()
+      .then((freight_carriers) => {
+        ClientRequests.getAllClients()
+          .then((clients) => {
+            EmployeeRequests.getAllSalesmen()
+            .then((salesmen) => {
+              this.setState({clients, freight_carriers, salesmen});
+            })
+          })
+      })
+      .catch((err) => {
+        console.error("Error retrieving freight carriers in New Quote", err);
+      })
+  }
 
+  setSalesDropdown = (employee) => {
+      return(
+        <button class="dropdown-item" href="#">Hey</button>
+      )
   }
 
   render(){
+    // const salesmen = this.state.salesmen;
     return(
       <div>
         <h1>New Quote</h1>
         <form>
-          <div className="form-group">
-            <label htmlFor="inputSalesman">Salesman:</label>
-            <input type="text" className="form-control" id="inputSalesman" placeholder="Enter Salesman"/>
+          <div className="btn-group">
+            <button className="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Salesman
+            </button>
+            <div className="dropdown-menu">
+              {/* {salesmen.map(this.setSalesDropdown())} */}
+            </div>
           </div>
           <div className="form-group">
             <label htmlFor="inputClient">Client:</label>
