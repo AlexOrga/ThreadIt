@@ -5,7 +5,11 @@ const getAllOrders = () => {
   return new Promise((resolve, reject) => {
     axios.get(`${constants.config.databaseURL}/orders`)
       .then((data) => {
-        resolve(data.data);
+        const orders = [];
+        data.data.forEach(order => {
+          orders.push(order);
+        })
+        resolve(orders);
       })
       .catch((err) => {
         reject(err);
@@ -13,6 +17,19 @@ const getAllOrders = () => {
   })
 };
 
-export default {
-  getAllOrders
+const addAnOrder = (order) => {
+  return new Promise((resolve,reject) => {
+    axios.post(`${constants.config.databaseURL}/orders`, {order})
+      .then((data) => {
+        resolve(data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  })
 }
+
+export default {
+  getAllOrders,
+  addAnOrder
+};

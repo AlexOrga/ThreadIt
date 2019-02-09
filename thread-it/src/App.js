@@ -3,13 +3,15 @@ import NavBar from './components/NavBar/NavBar';
 import Orders from './components/Orders/Orders';
 import NewQuote from './components/NewQuote/NewQuote';
 import NewOrder from './components/NewOrder/NewOrder';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import Clients from './components/Clients/Clients';
+import NewClient from './components/NewClient/NewClient';
+import { BrowserRouter, Route } from "react-router-dom";
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <Router>
+      <BrowserRouter>
         <div>
           <NavBar/>
           <Route
@@ -24,9 +26,16 @@ class App extends Component {
             path="/newOrder"
             component={NewOrder}
           />
-          <Route/>
+          <Route
+            path="/clients"
+            component={Clients}
+          />
+          <Route
+            path="/newClient"
+            component={NewClient}
+          />
         </div>
-      </Router>
+      </BrowserRouter>
     );
   }
 }

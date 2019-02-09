@@ -27,8 +27,8 @@ class NavBar extends Component{
                 </Link>
               </li>
               <li>
-                <Link to="/newQuote">
-                  New Quote
+                <Link to="/clients">
+                  Clients
                 </Link>
               </li>
             </ul>
